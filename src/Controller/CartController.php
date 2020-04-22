@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Cart;
+use App\Entity\User;
 use App\Form\CartType;
 use App\Repository\CartRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,8 +21,15 @@ class CartController extends AbstractController
      */
     public function index(CartRepository $cartRepository): Response
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
+        $repository = $this->getDoctrine()->getRepository(Cart::class);
+        $id = $user;
+        $cart = $repository->find($id);
+
         return $this->render('cart/index.html.twig', [
             'carts' => $cartRepository->findAll(),
+            'id' => $id,
+            'cart' => $cart,
         ]);
     }
 
@@ -31,21 +39,15 @@ class CartController extends AbstractController
     public function new(Request $request): Response
     {
         $cart = new Cart();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $cart->setUser($user);
+        $cart->setState(false);
         $form = $this->createForm(CartType::class, $cart);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($cart);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('cart_index');
-        }
-
-        return $this->render('cart/new.html.twig', [
-            'cart' => $cart,
-            'form' => $form->createView(),
-        ]);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($cart);
+        $entityManager->flush();
+        return $this->redirectToRoute('product_index');
     }
 
     /**
