@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+<style>
+    .card-product{ width: 100%; margin-top: 20px; }
+</style>
+    <div class="container">
+        <div class="text-center mt-20">
+            <h1>Page des Produits</h1>
+            <hr>
+        </div>
+        <div class="row-extended">
+            {% for product in products %}
+            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                <div class="card card-product">
+                    <img class="card-img-top" src="../uploads/{{ product.Picture }}" alt="{{ product.description }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">Stock : {{ product.stock }}</p>
+                        <hr>
+                        <div class="text-center">
+                            <p class="card-text">{{ product.price }} <span class="dollar">$</span></p>
+                            <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">Voir le produit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <p>No product(s) available yet !</p>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="col-12">
+            <div class="text-center">
+                <a class="btn btn-primary btn-lg mb-20" href="{{ path('product_new') }}">Create new</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

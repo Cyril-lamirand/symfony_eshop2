@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserPersonalController!{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <h1 class="mt-20">Hello {{ app.user.firstname }} {{ app.user.name }} !</h1>
+    <hr>
+    <div class="row">
+        <div class="col-6">
+            <div class="text-center">
+                <h2>Informations personnelles</h2>
+                <hr>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h5>Numéro Client</h5>
+                    <h5>Contact</h5>
+                    <h5>Prénom</h5>
+                    <h5>Nom</h5>
+                    <hr>
+                    <h5>Role(s)</h5>
+                </div>
+                <div class="col-2"></div>
+                <div class="col-6">
+                    <h5>#1337-{{ app.user.id }}</h5>
+                    <h5>{{ app.user.email }}</h5>
+                    <h5>{{ app.user.firstname }}</h5>
+                    <h5>{{ app.user.name }}</h5>
+                    <hr>
+                    <h5>
+                        {{ app.user.roles[0] }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="text-center">
+                <h2>Panier(s)</h2>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

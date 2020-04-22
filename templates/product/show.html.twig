@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+<style>
+    .btn-show{ margin-left: 5px; margin-right: 5px; }
+    .text-price{ font-size: 30px; }
+    .text-description{ text-transform: uppercase; font-size: 20px;}
+</style>
+    <div class="container">
+        <div class="text-center mt-20">
+            <img src="../uploads/{{ product.picture }}" alt="{{ product.description }}">
+            <h1 class="mt-20">{{ product.name }}</h1>
+            <hr>
+        </div>
+        <p class="text-description">{{ product.description }}</p>
+        <div class="text-center">
+            <p class="text-price">{{ product.price }} <span class="dollar">$</span></p>
+        </div>
+        <p class="text-quantity">Stock : {{ product.stock }}</p>
+        <hr>
+        <h2>Action(s)</h2>
+        <div class="col-12">
+            <div class="row mt-20">
+                <a class="btn btn-warning btn-show" href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
+                {{ include('product/_delete_form.html.twig') }}
+                <a class="btn btn-secondary btn-show" href="{{ path('product_index') }}">Back to the products</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

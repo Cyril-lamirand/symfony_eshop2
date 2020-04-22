@@ -3,10 +3,78 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
+        <style>
+            body{ background-color: #222; }
+            p, h1, h2, h3, h4, h5, h6, label { color: whitesmoke; }
+            hr{ border-top: 1px solid lightgrey; }
+            .row-extended{ display: flex; flex-direction: row; flex-wrap: wrap;}
+            .dollar{ color: lawngreen; }
+            .mt-20{ margin-top: 20px; }
+            .mb-20{ margin-bottom: 20px; }
+            .mr-20{ margin-right: 20px; }
+            .ml-20{ margin-left: 20px; }
+            .card{ background:none; border:2px solid lightgray; }
+            .symfony-logo{ width: 200px; margin-top: 50px; }
+            .bg-dark{ background-color: #222 !important; border-bottom: 1px solid white;}
+            .container{ padding-top: 50px; }
+
+        </style>
     </head>
     <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="{{ path('home') }}">
+                <img src="https://symfony.com/logos/symfony_white_02.png" width="120" height="30" class="d-inline-block align-top" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('home') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('product_index') }}">Product</a>
+                    </li>
+                    {% if app.user is not null %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('cart_index') }}">Cart</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                {% if app.user is null %}
+                    <a href="{{ path('app_register') }}">
+                        <span class="navbar-text">
+                            Inscription
+                        </span>
+                    </a>
+                    <span class="navbar-text">&nbsp;&&nbsp;</span>
+                    <a href="{{ path('app_login') }}">
+                        <span class="navbar-text">
+                            Connexion
+                        </span>
+                    </a>
+                {% else %}
+                    <a href="{{ path('user_personal') }}">
+                        <span class="navbar-text">
+                            My Account
+                        </span>
+                    </a>
+                    <span class="navbar-text">&nbsp;|&nbsp;</span>
+                    <a href="{{ path('app_logout') }}">
+                        <span class="navbar-text">
+                            Logout
+                        </span>
+                    </a>
+                {% endif %}
+            </div>
+        </nav>
         {% block body %}{% endblock %}
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         {% block javascripts %}{% endblock %}
     </body>
 </html>

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Website Index{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <div class="text-center">
+        <img class="symfony-logo" src="img/symfony_logo.png" alt="Symfony Logo">
+    </div>
+    {% if app.user is null %}
+        <a href="{{ path('app_login') }}">Connexion</a>
+        <a href="{{ path('app_register') }}">Inscription</a>
+    {% else %}
+        <p>Votre ID : {{ app.user.id }}</p>
+        <a href="{{ path('app_logout') }}">Déconnexion</a>
+    {% endif %}
+</div>
+{% endblock %}
