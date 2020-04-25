@@ -23,8 +23,13 @@ class ProductController extends AbstractController
      */
     public function index(ProductRepository $productRepository): Response
     {
+        $pdo = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $cart = $pdo->getRepository(Cart::class)->findBy(array('user' => $user,'state' => false));
+
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
+            'cart' => $cart
         ]);
     }
 

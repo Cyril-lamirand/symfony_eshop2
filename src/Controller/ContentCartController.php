@@ -20,6 +20,7 @@ class ContentCartController extends AbstractController
      */
     public function index(ContentCartRepository $contentCartRepository): Response
     {
+        // This section is not used (for the moment)
         return $this->render('content_cart/index.html.twig', [
             'content_carts' => $contentCartRepository->findAll(),
         ]);
@@ -30,6 +31,7 @@ class ContentCartController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        // This section is not used (for the moment)
         $contentCart = new ContentCart();
         $form = $this->createForm(ContentCartType::class, $contentCart);
         $form->handleRequest($request);
@@ -53,6 +55,7 @@ class ContentCartController extends AbstractController
      */
     public function show(ContentCart $contentCart): Response
     {
+        // This section is not used (for the moment)
         return $this->render('content_cart/show.html.twig', [
             'content_cart' => $contentCart,
         ]);

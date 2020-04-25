@@ -23,7 +23,6 @@
                     {% else %}
                         <p>Vous devez ajouter un ou plusieurs produits avant de valider votre panier !</p>
                     {% endif %}
-
                 </div>
             </div>
             <hr>
@@ -60,11 +59,10 @@
                     <hr>
                     <h5>Total : {{ total_price }} <span class="dollar">$</span></h5>
                 {% else %}
-                    <h5>Votre panier est vide !</h5>
-                    <h5>Commencer par :</h5>
-                    <ul>
-                        <li><a href="{{ path('product_index') }}">Liste des produits</a></li>
-                    </ul>
+                    <div class="text-center">
+                        <h5>Votre panier est vide !</h5>
+                        <a class="btn btn-primary mt-20" href="{{ path('product_index') }}">Liste des produits</a>
+                    </div>
                 {% endif %}
         {% else %}
             <h5>Vous n'avez pas de panier !</h5>

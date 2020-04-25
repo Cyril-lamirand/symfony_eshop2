@@ -22,10 +22,12 @@
         <hr>
         <h2>Action(s)</h2>
         {% if is_granted('IS_AUTHENTICATED_FULLY') and cart is not null %}
-        <h5>Ajouter au panier</h5>
-        {{ include('content_cart/_form.html.twig') }}
-        {% else %}
-            <p>Vous n'avez pas créée de panier ! Cliquez ici : <a href="{{ path('cart_new') }}">Créer un nouveau panier</a></p>
+            <h5>Ajouter au panier</h5>
+            {{ include('content_cart/_form.html.twig') }}
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and cart is null %}
+            <h5>Vous n'avez pas de panier !</h5>
+            <a class="btn btn-primary mt-20" href="{{ path('cart_new') }}">Nouveau panier</a>
         {% endif %}
         <div class="container-fluid">
             <div class="row mt-20">

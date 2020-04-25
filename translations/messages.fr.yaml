@@ -1,6 +1,11 @@
 nav:
   login: 'Connexion'
   register: 'Inscription'
+  logout: 'Déconnexion'
+  home: 'Accueil'
+  product: 'Produits'
+  cart: 'Panier'
+  account: 'Mon compte'
 
 
 Name: 'Nom'
