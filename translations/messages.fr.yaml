@@ -1,0 +1,10 @@
+nav:
+  login: 'Connexion'
+  register: 'Inscription'
+
+
+Name: 'Nom'
+Description: 'Description'
+Price: 'Prix'
+Stock: 'Stock'
+Picture: 'Photo'

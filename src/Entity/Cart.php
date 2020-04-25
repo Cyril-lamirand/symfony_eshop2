@@ -31,6 +31,8 @@ class Cart
      */
     private $state;
 
+
+
     public function getId(): ?int
     {
         return $this->id;

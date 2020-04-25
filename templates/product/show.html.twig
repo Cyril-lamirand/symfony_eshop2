@@ -21,13 +21,19 @@
         <p class="text-quantity">Stock : {{ product.stock }}</p>
         <hr>
         <h2>Action(s)</h2>
-        <div class="col-12">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and cart is not null %}
+        <h5>Ajouter au panier</h5>
+        {{ include('content_cart/_form.html.twig') }}
+        {% else %}
+            <p>Vous n'avez pas créée de panier ! Cliquez ici : <a href="{{ path('cart_new') }}">Créer un nouveau panier</a></p>
+        {% endif %}
+        <div class="container-fluid">
             <div class="row mt-20">
                 <a class="btn btn-warning btn-show" href="{{ path('product_edit', {'id': product.id}) }}">Edit</a>
                 {{ include('product/_delete_form.html.twig') }}
                 <a class="btn btn-secondary btn-show" href="{{ path('product_index') }}">Back to the products</a>
             </div>
         </div>
+        <hr>
     </div>
-
 {% endblock %}

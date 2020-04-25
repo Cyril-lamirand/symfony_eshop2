@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Cart;
 use App\Entity\User;
+use App\Entity\ContentCart;
 use App\Form\CartType;
 use App\Repository\CartRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,19 +18,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     /**
-     * @Route("/", name="cart_index", methods={"GET"})
+     * @Route("/cart", name="cart_index", methods={"GET"})
      */
     public function index(CartRepository $cartRepository): Response
     {
-        $user = $this->get('security.token_storage')->getToken()->getUser()->getId();
-        $repository = $this->getDoctrine()->getRepository(Cart::class);
-        $id = $user;
-        $cart = $repository->find($id);
+        $pdo = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $carts = $pdo->getRepository(Cart::class)->findBy(array('user' => $user,'state' => false));
+
+        $contentCarts = $pdo->getRepository(ContentCart::class)->findBy(array('cart' => $carts));
+
+
 
         return $this->render('cart/index.html.twig', [
-            'carts' => $cartRepository->findAll(),
-            'id' => $id,
-            'cart' => $cart,
+            'carts' => $carts,
+            'contentCarts' => $contentCarts,
         ]);
     }
 
@@ -51,12 +54,15 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="cart_show", methods={"GET"})
+     * @Route("/info/{id}", name="cart_show", methods={"GET"})
      */
     public function show(Cart $cart): Response
     {
+        $pdo = $this->getDoctrine()->getManager();
+        $contentCarts = $pdo->getRepository(ContentCart::class)->findBy(array('cart' => $cart));
         return $this->render('cart/show.html.twig', [
             'cart' => $cart,
+            'contentCarts' => $contentCarts
         ]);
     }
 
@@ -67,17 +73,10 @@ class CartController extends AbstractController
     {
         $form = $this->createForm(CartType::class, $cart);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('cart_index');
-        }
-
-        return $this->render('cart/edit.html.twig', [
-            'cart' => $cart,
-            'form' => $form->createView(),
-        ]);
+        $cart->setState(true);
+        $cart->setDatebuy(new \DateTime('now'));
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('cart_index');
     }
 
     /**

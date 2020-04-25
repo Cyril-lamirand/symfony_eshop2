@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\Cart;
+use App\Entity\ContentCart;
+use App\Form\ContentCartType;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -63,12 +66,33 @@ class ProductController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="product_show", methods={"GET"})
+     * @Route("/{id}", name="product_show", methods={"GET", "POST"})
      */
-    public function show(Product $product): Response
+    public function show(Request $request, Product $product): Response
     {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $cart = $em->getRepository(Cart::class)->findOneBy(array('user' => $user,'state' => false));
+
+        $contentCart = new ContentCart();
+        $contentCart->setProduct($product);
+        $contentCart->setCart($cart);
+        $contentCart->setDateadd(new \DateTime('now'));
+
+        $form = $this->createForm(ContentCartType::class, $contentCart);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contentCart);
+            $entityManager->flush();
+        }
+
         return $this->render('product/show.html.twig', [
             'product' => $product,
+            'cart' => $cart,
+            'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 

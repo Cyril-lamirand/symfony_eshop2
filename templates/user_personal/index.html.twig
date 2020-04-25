@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-2"></div>
                 <div class="col-6">
-                    <h5>#1337-{{ app.user.id }}</h5>
+                    <h5>1337#{{ app.user.id }}</h5>
                     <h5>{{ app.user.email }}</h5>
                     <h5>{{ app.user.firstname }}</h5>
                     <h5>{{ app.user.name }}</h5>
@@ -40,8 +40,27 @@
         </div>
         <div class="col-6">
             <div class="text-center">
-                <h2>Panier(s)</h2>
+                <h2>Historique de commande(s)</h2>
                 <hr>
+                {% if carts is not empty and contentCarts is not empty %}
+                    <div class="row-extended">
+                        {% for cart in carts %}
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Commande 7331#{{ cart.id }}</h5>
+                                        <h6 class="card-subtitle mb-2 text-muted">{{ cart.datebuy|date('d-m-Y H:i:s') }}</h6>
+                                        <div class="text-center">
+                                            <a href="/cart/info/{{ cart.id }}" class="btn btn-primary">Voir la commande</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+
+                {% endif %}
             </div>
         </div>
     </div>

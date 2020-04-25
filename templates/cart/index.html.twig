@@ -3,39 +3,75 @@
 {% block title %}Cart index{% endblock %}
 
 {% block body %}
-    <h1>Cart index</h1>
+    <div class="container">
+        <h1 class="mt-20">Votre panier</h1>
+        <hr>
+        {% if carts is not empty %}
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <h3>Informations complémentaires</h3>
+                    <hr>
+                    <h5>Numéro du panier : 7331#{{ carts[0].id }}</h5>
+                    <h5>Statut : {{ carts[0].state? 'Validé' : 'Non commandé' }}</h5>
+                    <h5>Email : {{ app.user.email }}</h5>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <h3>Action(s)</h3>
+                    <hr>
+                    {% if contentCarts is not empty %}
+                        <a class="btn btn-success btn-block" href="/cart/{{ carts[0].id }}/edit">Valider le panier</a>
+                    {% else %}
+                        <p>Vous devez ajouter un ou plusieurs produits avant de valider votre panier !</p>
+                    {% endif %}
 
-    <h2>Value : {{ id }}</h2>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <h3>Contenu du panier</h3>
+            </div>
+            <hr>
+                {% if contentCarts is not empty %}
+                    {% set total_amount = 0 %}
+                    {% set total_price = 0 %}
+                    <div class="row-extended">
+                        {% for contentCart in contentCarts %}
+                            {% set total_amount = contentCart.product.price * contentCart.quantity %}
+                            {% set total_price = total_price + total_amount %}
+                            <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                                <div class="card card-product">
+                                    <img class="card-img-top" src="../uploads/{{ contentCart.product.picture }}" alt="{{ contentCart.product.description }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ contentCart.product.name }}</h5>
+                                        <p class="card-text">Quantité : {{ contentCart.quantity }}</p>
 
-    {{ dump(cart) }}
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Datebuy</th>
-                <th>State</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cart in carts %}
-            <tr>
-                <td>{{ cart.id }}</td>
-                <td>{{ cart.datebuy ? cart.datebuy|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ cart.state ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('cart_show', {'id': cart.id}) }}">show</a>
-                    <a href="{{ path('cart_edit', {'id': cart.id}) }}">edit</a>
-                </td>
-            </tr>
+                                        <p class="card-text">Prix Unité : {{ contentCart.product.price }} <span class="dollar">$</span></p>
+                                        <p class="card-text">Prix Total : {{ total_amount }} <span class="dollar">$</span></p>
+                                        <hr>
+                                        <div class="row justify-content-center">
+                                            <a href="{{ path('product_show', {'id': contentCart.product.id}) }}" class="btn btn-primary" style="margin-right: 5px;">Fiche produit</a>
+                                            {{ include('content_cart/_delete_form.html.twig') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <h5>Total : {{ total_price }} <span class="dollar">$</span></h5>
+                {% else %}
+                    <h5>Votre panier est vide !</h5>
+                    <h5>Commencer par :</h5>
+                    <ul>
+                        <li><a href="{{ path('product_index') }}">Liste des produits</a></li>
+                    </ul>
+                {% endif %}
         {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('cart_new') }}">Create new</a>
+            <h5>Vous n'avez pas de panier !</h5>
+            <h5>Vous pouvez :</h5>
+            <ul>
+                <li><a href="{{ path('cart_new') }}">Create new</a></li>
+            </ul>
+        {% endif %}
+    </div>
 {% endblock %}

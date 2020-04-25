@@ -3,28 +3,54 @@
 {% block title %}Cart{% endblock %}
 
 {% block body %}
-    <h1>Cart</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ cart.id }}</td>
-            </tr>
-            <tr>
-                <th>Datebuy</th>
-                <td>{{ cart.datebuy ? cart.datebuy|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>State</th>
-                <td>{{ cart.state ? 'Yes' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('cart_index') }}">back to list</a>
-
-    <a href="{{ path('cart_edit', {'id': cart.id}) }}">edit</a>
-
-    {{ include('cart/_delete_form.html.twig') }}
+    <div class="container">
+        <h1 class="mt-20">Détails de la commande 7331#{{ cart.id }}</h1>
+        <hr>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <h2>Informations utilisateur</h2>
+                <hr>
+                <h5>Numéro Client : 1337#{{ app.user.id }}</h5>
+                <h5>Prénom & Nom : {{ app.user.firstname }} {{ app.user.name }}</h5>
+                <h5>Contact : {{ app.user.email }}</h5>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <h2>Informations commande</h2>
+                <hr>
+                <h5>Statut :  {{ cart.state? 'Validé' : 'Non commandé' }}</h5>
+                <h5>Date : {{ cart.datebuy|date('d-m-Y H:i:s') }}</h5>
+            </div>
+        </div>
+        <div class="text-center">
+            <h2>Produit(s) commandé(s)</h2>
+        </div>
+        <hr>
+        {% set total_amount = 0 %}
+        {% set total_price = 0 %}
+        <div class="row-extended">
+            {% for contentCart in contentCarts %}
+                {% set total_amount = contentCart.product.price * contentCart.quantity %}
+                {% set total_price = total_price + total_amount %}
+                <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                    <div class="card card-product">
+                        <img class="card-img-top" src="../../uploads/{{ contentCart.product.picture }}" alt="{{ contentCart.product.description }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ contentCart.product.name }}</h5>
+                            <p class="card-text">Quantité : {{ contentCart.quantity }}</p>
+                            <p class="card-text">Prix Unité : {{ contentCart.product.price }} <span class="dollar">$</span></p>
+                            <p class="card-text">Prix Total : {{ total_amount }} <span class="dollar">$</span></p>
+                            <hr>
+                            <p class="card-text">Ajouté le : {{ contentCart.dateadd|date('d-m-Y H:i:s') }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <hr>
+        <h5>Total : {{ total_price }} <span class="dollar">$</span></h5>
+        <hr>
+        <div class="text-center">
+            <a class="btn btn-secondary" href="{{ path('cart_index') }}">Back to list</a>
+        </div>
+    </div>
 {% endblock %}

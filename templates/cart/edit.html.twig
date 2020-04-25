@@ -3,7 +3,13 @@
 {% block title %}Edit Cart{% endblock %}
 
 {% block body %}
-    <h1>Edit Cart</h1>
+    <div class="container">
+        <h1>Modifier le panier</h1>
+        <hr>
+
+        {{ dump(cart) }}
+
+    </div>
 
     {{ include('cart/_form.html.twig', {'button_label': 'Update'}) }}
 
