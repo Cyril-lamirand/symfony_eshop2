@@ -15,7 +15,7 @@
                 </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal mt-20">Please sign in</h1>
+            <h1 class="h3 mb-3 font-weight-normal mt-20">{{ 'nav.login' | trans }}</h1>
 
             <div class="row">
                 <div class="col-6">
@@ -23,7 +23,7 @@
                     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
                 </div>
                 <div class="col-6">
-                    <label for="inputPassword">Password</label>
+                    <label for="inputPassword">{{ 'Password' | trans }}</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" required>
                 </div>
             </div>
@@ -42,7 +42,7 @@
             #}
             <div class="text-center">
                 <button class="btn btn-lg btn-primary mt-20" type="submit">
-                    Sign in
+                    {{ 'user.login' | trans }}
                 </button>
             </div>
         </form>

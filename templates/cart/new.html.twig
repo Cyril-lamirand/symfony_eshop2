@@ -4,10 +4,10 @@
 
 {% block body %}
     <div class="container">
-        <h1>Create new Cart</h1>
+        <h1>{{ 'cart.new' | trans }}</h1>
         <hr>
         {{ dump(cart) }}
         {{ include('cart/_form.html.twig') }}
-        <a class="btn btn-secondary" href="{{ path('cart_index') }}">Back to list</a>
+        <a class="btn btn-secondary" href="{{ path('cart_index') }}">{{ 'Back' | trans }}</a>
     </div>
 {% endblock %}

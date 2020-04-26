@@ -8,13 +8,13 @@
 </style>
     <div class="container">
         <div class="text-center mt-20">
-            <h1>Page des Produits</h1>
+            <h1>{{ 'product.page' | trans }}</h1>
             <hr>
         </div>
         {% if cart is empty and is_granted('IS_AUTHENTICATED_FULLY') %}
             <div class="text-center">
-                <h2>Vous n'avez pas de panier !</h2>
-                <a class="btn btn-primary mt-20" href="{{ path('cart_new') }}">Nouveau panier</a>
+                <h2>{{ 'cart.nocart' | trans }}</h2>
+                <a class="btn btn-primary mt-20" href="{{ path('cart_new') }}">{{ 'cart.new' | trans }}</a>
                 <hr>
             </div>
         {% endif %}
@@ -29,19 +29,19 @@
                         <hr>
                         <div class="text-center">
                             <p class="card-text">{{ product.price }} <span class="dollar">$</span></p>
-                            <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">Voir le produit</a>
+                            <a href="{{ path('product_show', {'id': product.id}) }}" class="btn btn-primary">{{ 'product.see' | trans }}</a>
                         </div>
                     </div>
                 </div>
             </div>
             {% else %}
-                <p>No product(s) available yet !</p>
+                <p>{{ 'product.noproduct' | trans }}</p>
             {% endfor %}
         </div>
         <hr>
         <div class="col-12">
             <div class="text-center">
-                <a class="btn btn-primary btn-lg mb-20" href="{{ path('product_new') }}">Create new</a>
+                <a class="btn btn-primary btn-lg mb-20" href="{{ path('product_new') }}">{{ 'product.new' | trans }}</a>
             </div>
         </div>
     </div>

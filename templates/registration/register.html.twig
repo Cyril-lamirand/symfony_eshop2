@@ -4,15 +4,13 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="mt-20">Register</h1>
+        <h1 class="mt-20">{{ 'user.register' | trans }}</h1>
         <hr>
         {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword) }}
         {{ form_row(registrationForm.agreeTerms) }}
-        <button class="btn btn-primary mt-20">Register</button>
+        <button class="btn btn-primary mt-20">{{ 'user.register' | trans }}</button>
         {{ form_end(registrationForm) }}
-
-
     </div>
 {% endblock %}

@@ -33,40 +33,32 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('home') }}">Home</a>
+                        <a class="nav-link" href="{{ path('home') }}">{{ 'nav.home' | trans }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('product_index') }}">Product</a>
+                        <a class="nav-link" href="{{ path('product_index') }}">{{ 'nav.product' | trans }}</a>
                     </li>
                     {% if app.user is not null %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('cart_index') }}">Cart</a>
+                            <a class="nav-link" href="{{ path('cart_index') }}">{{ 'nav.cart' | trans }}</a>
                         </li>
                     {% endif %}
                 </ul>
                 {% if app.user is null %}
                     <a href="{{ path('app_register') }}">
-                        <span class="navbar-text">
-                            Inscription
-                        </span>
+                        <span class="navbar-text">{{ 'nav.register' | trans }}</span>
                     </a>
                     <span class="navbar-text">&nbsp;&&nbsp;</span>
                     <a href="{{ path('app_login') }}">
-                        <span class="navbar-text">
-                            Connexion
-                        </span>
+                        <span class="navbar-text">{{ 'nav.login' | trans }}</span>
                     </a>
                 {% else %}
                     <a href="{{ path('user_personal') }}">
-                        <span class="navbar-text">
-                            My Account
-                        </span>
+                        <span class="navbar-text">{{ 'nav.account' | trans }}</span>
                     </a>
                     <span class="navbar-text">&nbsp;|&nbsp;</span>
                     <a href="{{ path('app_logout') }}">
-                        <span class="navbar-text">
-                            Logout
-                        </span>
+                        <span class="navbar-text">{{ 'nav.logout' | trans }}</span>
                     </a>
                 {% endif %}
             </div>

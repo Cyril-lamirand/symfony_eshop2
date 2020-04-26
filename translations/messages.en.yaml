@@ -1,5 +1,70 @@
+nav:
+  login: "Login"
+  register: "Register"
+  logout: "Logout"
+  home: "Home"
+  product: "Products"
+  cart: "Cart"
+  account: "My Account"
+
+home:
+  welcome: "Welcome on my Symfony project !"
+  actions: "Some actions you can do :"
+
+product:
+  list: "Products list"
+  page: "Our products"
+  see: "See product"
+  noproduct: "No products available"
+  new: "New Product"
+  order: "Products order"
+  access: "Product page"
+
+
+cart:
+  new: "New cart"
+  nocart: "There is no cart !"
+  add: "Add to cart"
+  details: "Order Details"
+  your: "Your cart"
+  info: "Informations"
+  number: "Cart number"
+  validate: "Validate"
+  noproduct: "You have to add one or more products before !"
+  content: "Content"
+  empty: "Cart is empty !"
+
+user:
+  info: "User infos"
+  number: "Client Number"
+  names: "Firstname & Lastname"
+  login: "Login"
+  register: "Register"
+  personal: "Personal infos"
+
+order:
+  info: "Order infos"
+  status: "Order status"
+  history: "Historic"
+  see: "See order"
+
+price:
+  unit: "Price unit"
+  total: "Price total"
+
 Name: 'Name'
 Description: 'Description'
 Price: 'Price'
-Stock: 'Stock'
 Picture: 'Picture'
+Edit: "Edit"
+Delete: "Delete"
+Back: "Back"
+Quantity: "Quantity"
+Status: "Status"
+Password: "Password"
+Firstname: "Firstname"
+Lastname: "Lastname"
+Order: "Order"
+Welcome: "Welcome"
+Nice: "How are you ?"
+

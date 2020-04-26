@@ -8,20 +8,20 @@
 </style>
 
 <div class="container">
-    <h1 class="mt-20">Hello {{ app.user.firstname }} {{ app.user.name }} !</h1>
+    <h1 class="mt-20">{{ app.user.firstname }} {{ app.user.name }} !</h1>
     <hr>
     <div class="row">
         <div class="col-6">
             <div class="text-center">
-                <h2>Informations personnelles</h2>
+                <h2>{{ 'user.personal' | trans }}</h2>
                 <hr>
             </div>
             <div class="row">
                 <div class="col-4">
-                    <h5>Numéro Client</h5>
+                    <h5>{{ 'user.number' | trans }}</h5>
                     <h5>Contact</h5>
-                    <h5>Prénom</h5>
-                    <h5>Nom</h5>
+                    <h5>{{ 'Firstname' | trans }}</h5>
+                    <h5>{{ 'Lastname' | trans }}</h5>
                     <hr>
                     <h5>Role(s)</h5>
                 </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="col-6">
             <div class="text-center">
-                <h2>Historique de commande(s)</h2>
+                <h2>{{ 'order.history' | trans }}</h2>
                 <hr>
                 {% if carts is not empty and contentCarts is not empty %}
                     <div class="row-extended">
@@ -48,10 +48,10 @@
                             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="card-title">Commande 7331#{{ cart.id }}</h5>
+                                        <h5 class="card-title">{{ 'Order' | trans }} 7331#{{ cart.id }}</h5>
                                         <h6 class="card-subtitle mb-2 text-muted">{{ cart.datebuy|date('d-m-Y H:i:s') }}</h6>
                                         <div class="text-center">
-                                            <a href="/cart/info/{{ cart.id }}" class="btn btn-primary">Voir la commande</a>
+                                            <a href="/cart/info/{{ cart.id }}" class="btn btn-primary">{{ 'order.see' | trans }}</a>
                                         </div>
                                     </div>
                                 </div>

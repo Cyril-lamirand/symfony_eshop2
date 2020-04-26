@@ -4,25 +4,25 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="mt-20">Détails de la commande 7331#{{ cart.id }}</h1>
+        <h1 class="mt-20">{{ 'cart.details' | trans }} 7331#{{ cart.id }}</h1>
         <hr>
         <div class="row">
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <h2>Informations utilisateur</h2>
+                <h2>{{ 'user.info' | trans }}</h2>
                 <hr>
-                <h5>Numéro Client : 1337#{{ app.user.id }}</h5>
-                <h5>Prénom & Nom : {{ app.user.firstname }} {{ app.user.name }}</h5>
+                <h5>{{ 'user.number' | trans }} : 1337#{{ app.user.id }}</h5>
+                <h5>{{ 'user.names' | trans }} : {{ app.user.firstname }} {{ app.user.name }}</h5>
                 <h5>Contact : {{ app.user.email }}</h5>
             </div>
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                <h2>Informations commande</h2>
+                <h2>{{ 'order.info' | trans }}</h2>
                 <hr>
-                <h5>Statut :  {{ cart.state? 'Validé' : 'Non commandé' }}</h5>
+                <h5>{{ 'order.status' | trans }} :  {{ cart.state? 'Validé' : 'Non commandé' }}</h5>
                 <h5>Date : {{ cart.datebuy|date('d-m-Y H:i:s') }}</h5>
             </div>
         </div>
         <div class="text-center">
-            <h2>Produit(s) commandé(s)</h2>
+            <h2>{{ 'product.order' | trans }}</h2>
         </div>
         <hr>
         {% set total_amount = 0 %}
@@ -36,11 +36,11 @@
                         <img class="card-img-top" src="../../uploads/{{ contentCart.product.picture }}" alt="{{ contentCart.product.description }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ contentCart.product.name }}</h5>
-                            <p class="card-text">Quantité : {{ contentCart.quantity }}</p>
-                            <p class="card-text">Prix Unité : {{ contentCart.product.price }} <span class="dollar">$</span></p>
-                            <p class="card-text">Prix Total : {{ total_amount }} <span class="dollar">$</span></p>
+                            <p class="card-text">{{ 'Quantity' | trans }} : {{ contentCart.quantity }}</p>
+                            <p class="card-text">{{ 'price.unit' | trans }} : {{ contentCart.product.price }} <span class="dollar">$</span></p>
+                            <p class="card-text">{{ 'price.total' | trans }} : {{ total_amount }} <span class="dollar">$</span></p>
                             <hr>
-                            <p class="card-text">Ajouté le : {{ contentCart.dateadd|date('d-m-Y H:i:s') }}</p>
+                            <p class="card-text">Date : {{ contentCart.dateadd|date('d-m-Y H:i:s') }}</p>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
         <h5>Total : {{ total_price }} <span class="dollar">$</span></h5>
         <hr>
         <div class="text-center">
-            <a class="btn btn-secondary" href="{{ path('cart_index') }}">Back to list</a>
+            <a class="btn btn-secondary" href="{{ path('cart_index') }}">{{ 'Back' | trans }}</a>
         </div>
     </div>
 {% endblock %}

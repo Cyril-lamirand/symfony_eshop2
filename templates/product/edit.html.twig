@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Product{% endblock %}
+{% block title %}{{ 'Edit' | trans }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Product</h1>
-
-    {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a class="btn btn-secondary" href="{{ path('product_index') }}">Back to list</a>
-
-    {{ include('product/_delete_form.html.twig') }}
+    <div class="container">
+        <h1 class="mt-20">{{ 'Edit' | trans }}</h1>
+        <hr>
+        {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+        <a class="btn btn-secondary" href="{{ path('product_index') }}">{{ 'Back' | trans }}</a>
+        {{ include('product/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

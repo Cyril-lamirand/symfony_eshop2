@@ -4,30 +4,30 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="mt-20">Votre panier</h1>
+        <h1 class="mt-20">{{ 'cart.your' | trans }}</h1>
         <hr>
         {% if carts is not empty %}
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                    <h3>Informations complémentaires</h3>
+                    <h3>{{ 'cart.info' | trans }}</h3>
                     <hr>
-                    <h5>Numéro du panier : 7331#{{ carts[0].id }}</h5>
-                    <h5>Statut : {{ carts[0].state? 'Validé' : 'Non commandé' }}</h5>
+                    <h5>{{ 'cart.number' | trans }} : 7331#{{ carts[0].id }}</h5>
+                    <h5>{{ 'Status' | trans }} : {{ carts[0].state? 'Validé' : 'Non commandé' }}</h5>
                     <h5>Email : {{ app.user.email }}</h5>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                     <h3>Action(s)</h3>
                     <hr>
                     {% if contentCarts is not empty %}
-                        <a class="btn btn-success btn-block" href="/cart/{{ carts[0].id }}/edit">Valider le panier</a>
+                        <a class="btn btn-success btn-block" href="/cart/{{ carts[0].id }}/edit">{{ 'cart.validate' | trans }}</a>
                     {% else %}
-                        <p>Vous devez ajouter un ou plusieurs produits avant de valider votre panier !</p>
+                        <p>{{ 'cart.noproduct' | trans }}</p>
                     {% endif %}
                 </div>
             </div>
             <hr>
             <div class="text-center">
-                <h3>Contenu du panier</h3>
+                <h3>{{ 'cart.content' | trans }}</h3>
             </div>
             <hr>
                 {% if contentCarts is not empty %}
@@ -42,13 +42,13 @@
                                     <img class="card-img-top" src="../uploads/{{ contentCart.product.picture }}" alt="{{ contentCart.product.description }}">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ contentCart.product.name }}</h5>
-                                        <p class="card-text">Quantité : {{ contentCart.quantity }}</p>
+                                        <p class="card-text">{{ 'Quantity' | trans }} : {{ contentCart.quantity }}</p>
 
-                                        <p class="card-text">Prix Unité : {{ contentCart.product.price }} <span class="dollar">$</span></p>
-                                        <p class="card-text">Prix Total : {{ total_amount }} <span class="dollar">$</span></p>
+                                        <p class="card-text">{{ 'price.unit' | trans }} : {{ contentCart.product.price }} <span class="dollar">$</span></p>
+                                        <p class="card-text">{{ 'price.total' | trans }} : {{ total_amount }} <span class="dollar">$</span></p>
                                         <hr>
                                         <div class="row justify-content-center">
-                                            <a href="{{ path('product_show', {'id': contentCart.product.id}) }}" class="btn btn-primary" style="margin-right: 5px;">Fiche produit</a>
+                                            <a href="{{ path('product_show', {'id': contentCart.product.id}) }}" class="btn btn-primary" style="margin-right: 5px;">{{ 'product.access' | trans }}</a>
                                             {{ include('content_cart/_delete_form.html.twig') }}
                                         </div>
                                     </div>
@@ -60,15 +60,14 @@
                     <h5>Total : {{ total_price }} <span class="dollar">$</span></h5>
                 {% else %}
                     <div class="text-center">
-                        <h5>Votre panier est vide !</h5>
-                        <a class="btn btn-primary mt-20" href="{{ path('product_index') }}">Liste des produits</a>
+                        <h5>{{ 'cart.empty' | trans }}</h5>
+                        <a class="btn btn-primary mt-20" href="{{ path('product_index') }}">{{ 'product.list' | trans }}</a>
                     </div>
                 {% endif %}
         {% else %}
-            <h5>Vous n'avez pas de panier !</h5>
-            <h5>Vous pouvez :</h5>
+            <h5>{{ 'cart.nocart' | trans }}</h5>
             <ul>
-                <li><a href="{{ path('cart_new') }}">Create new</a></li>
+                <li><a href="{{ path('cart_new') }}">{{ 'cart.new' | trans }}</a></li>
             </ul>
         {% endif %}
     </div>

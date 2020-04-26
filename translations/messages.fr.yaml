@@ -1,15 +1,70 @@
 nav:
-  login: 'Connexion'
-  register: 'Inscription'
-  logout: 'Déconnexion'
-  home: 'Accueil'
-  product: 'Produits'
-  cart: 'Panier'
-  account: 'Mon compte'
+  login: "Connexion"
+  register: "Inscription"
+  logout: "Déconnexion"
+  home: "Accueil"
+  product: "Produits"
+  cart: "Panier"
+  account: "Mon compte"
+
+home:
+  welcome: "Bienvenue sur mon projet Symfony !"
+  actions: "Les actions que vous pouvaient effectués :"
+
+product:
+  list: "Liste des produits"
+  page: "Catalogue des produits"
+  see: "Voir le produit"
+  noproduct: "Il n'y pas de produits disponibles !"
+  new: "Nouveau produit"
+  order: "Produit(s) commandé(s)"
+  access: "Fiche produit"
+
+
+cart:
+  new: "Nouveau Panier"
+  nocart: "Vous n'avez pas de panier !"
+  add: "Ajouter au Panier"
+  details: "Détails de la commande"
+  your: "Votre panier"
+  info: "Informations complémentaires"
+  number: "Numéro de panier"
+  validate: "Valider le panier"
+  noproduct: "Vous devez ajouter un ou plusieurs produits dans votre panier !"
+  content: "Contenu du panier"
+  empty: "Votre panier est vide !"
+
+user:
+  info: "Informations utilisateur"
+  number: "Numéro Client"
+  names: "Prénom & Nom"
+  login: "Se connecter"
+  register: "S'enregistrer"
+  personal: "Informations personnelles"
+
+order:
+  info: "Informations commande"
+  status: "Statut de la commande"
+  history: "Historique de commandes"
+  see: "Voir la commande"
+
+price:
+  unit: "Prix unité"
+  total: "Prix total"
 
 
 Name: 'Nom'
 Description: 'Description'
 Price: 'Prix'
-Stock: 'Stock'
 Picture: 'Photo'
+Edit: "Modifier"
+Delete: "Supprimer"
+Back: "Retour"
+Quantity: "Quantité"
+Status: "Statut"
+Password: "Mot de passe"
+Firstname: "Prénom"
+Lastname: "Nom de famille"
+Order: "Commande"
+Welcome: "Bienvenue"
+Nice: "Comment allez-vous ?"

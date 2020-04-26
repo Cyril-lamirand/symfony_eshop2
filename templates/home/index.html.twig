@@ -3,24 +3,31 @@
 {% block title %}Website Index{% endblock %}
 
 {% block body %}
-<style>
-
-</style>
-
 <div class="container">
     <div class="text-center">
         <img class="symfony-logo" src="img/symfony_logo.png" alt="Symfony Logo">
     </div>
     <hr>
-    <h1 style="margin-top: 50px;">Welcome on my Symfony Project !</h1>
+    <div class="text-center">
+        <h1 style="margin-top: 50px;">{{ 'home.welcome' | trans }}</h1>
+    </div>
     {% if app.user is null %}
-        <h5 class="mt-20">You are currently not logged in ! You can :</h5>
+        <h5 class="mt-20">{{ 'home.actions' | trans }}</h5>
         <ul>
-            <li><a href="{{ path('app_login') }}">Connexion</a></li>
-            <li><a href="{{ path('app_register') }}">Inscription</a></li>
+            <li><a href="{{ path('app_login') }}">{{ 'nav.login' | trans }}</a></li>
+            <li><a href="{{ path('app_register') }}">{{ 'nav.register' | trans }}</a></li>
+            <li><a href="{{ path('product_index') }}">{{ 'product.list' | trans }}</a></li>
         </ul>
     {% else %}
-        {{ dump(app.user.id) }}
+        <h3 class="mt-20">{{ 'Welcome' | trans }} {{ app.user.firstname }} {{ app.user.name }} ! {{ 'Nice' | trans }}</h3>
+        <h4 class="mt-20">Action(s)</h4>
+        <ul>
+            <li><a href="{{ path('product_index') }}">{{ 'product.list' | trans }}</a></li>
+            <li><a href="{{ path('cart_index') }}">{{ 'cart.your' | trans }}</a></li>
+            <li><a href="{{ path('user_personal') }}">{{ 'nav.account' | trans }}</a></li>
+            <li><a href="{{ path('app_logout') }}">{{ 'nav.logout' | trans }}</a></li>
+        </ul>
     {% endif %}
+    <hr>
 </div>
 {% endblock %}
