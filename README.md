@@ -1,4 +1,6 @@
 <h1>Symfony e-Shop Project</h1>
+<p>Institut de l'Internet et du Multimédia, Pôle Universitaire Leonard de Vinci, Paris la Défense.</p>
+<p>Étudiants :</p>
 <ul>
   <li>Cyril LAMIRAND</li>
   <li>Mehdi ALI BENYAHIA</li>
