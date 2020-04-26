@@ -1,5 +1,9 @@
 <h1>Symfony e-Shop Project</h1>
-<h2>Lien du rendu : <a href="http://bit.ly/symfony-ecommerce">Rendu Symfony</a></h2>
+<ul>
+  <li>Cyril LAMIRAND</li>
+  <li>Mehdi ALI BENYAHIA</li>
+</ul>
+<p>Lien du rendu : <a href="http://bit.ly/symfony-ecommerce">Rendu Symfony</a></p>
 <h2>Entités</h2>
 <ul>
 <li>Product</li>
