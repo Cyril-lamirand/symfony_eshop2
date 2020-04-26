@@ -3,7 +3,7 @@
   <li>Cyril LAMIRAND</li>
   <li>Mehdi ALI BENYAHIA</li>
 </ul>
-<p>Lien du rendu : <a href="http://bit.ly/symfony-ecommerce">Rendu Symfony</a></p>
+<p>Consignes du rendu : <a href="http://bit.ly/symfony-ecommerce">Rendu Symfony</a></p>
 <h2>Entités</h2>
 <ul>
   <li>Product</li>
