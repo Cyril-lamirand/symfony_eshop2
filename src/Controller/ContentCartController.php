@@ -66,6 +66,7 @@ class ContentCartController extends AbstractController
      */
     public function edit(Request $request, ContentCart $contentCart): Response
     {
+        // This section is not used (for the moment)
         $form = $this->createForm(ContentCartType::class, $contentCart);
         $form->handleRequest($request);
 

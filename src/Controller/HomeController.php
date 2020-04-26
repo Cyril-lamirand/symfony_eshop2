@@ -13,12 +13,8 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $session = new Session();
-        $value = $session->get('value');
-
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'value' => $value,
+            'controller_name' => 'HomeController'
         ]);
     }
 }
